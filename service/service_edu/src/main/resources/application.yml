@@ -1,0 +1,21 @@
+#服务端口
+server:
+  port: 8001
+
+spring:
+  application:
+    name: service-edu
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1/guli?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
