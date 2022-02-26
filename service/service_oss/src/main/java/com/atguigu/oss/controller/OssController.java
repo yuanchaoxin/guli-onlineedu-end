@@ -25,7 +25,7 @@ public class OssController {
     @Resource
     private OssService ossService;
 
-    @PostMapping("/oss/upload")
+    @PostMapping("/ossservice/oss/upload")
     public R uploadOssFile(MultipartFile file) {
 
         String url = ossService.uploadFileAvatar(file);
