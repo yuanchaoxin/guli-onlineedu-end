@@ -2,15 +2,14 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.commonutils.R;
+import com.atguigu.eduservice.entity.subject.OneSubject;
 import com.atguigu.eduservice.service.EduSubjectService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -34,10 +33,17 @@ public class EduSubjectController {
      * @return
      */
     @PostMapping("/eduservice/subject/add")
-    public R addSubject(MultipartFile multipartFile) {
+    public R addSubject(@RequestParam("file")MultipartFile multipartFile) {
 
         eduSubjectService.saveSubject(multipartFile, eduSubjectService);
         return R.success();
+    }
+
+    @GetMapping("/eduservice/subject/getAllSubjectTree")
+    public R getAllSubjectTree() {
+
+        List<OneSubject> list = eduSubjectService.getAllSubjectTree();
+        return R.success().data("list", list);
     }
 }
 
