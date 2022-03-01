@@ -2,16 +2,25 @@ package com.atguigu.eduservice.service.impl;
 
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduCourseDescription;
+import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
+import com.atguigu.eduservice.vo.CoursePublishVo;
+import com.atguigu.eduservice.vo.CourseQueryVo;
+import com.atguigu.eduservice.vo.TeacherQuery;
 import com.atguigu.servicebase.config.exception.GuliException;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -78,5 +87,45 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         description.setDescription(courseInfoVo.getDescription());
         eduCourseDescriptionService.updateById(description);
 
+    }
+
+    @Override
+    public CoursePublishVo getPublishCourseInfo(String courseId) {
+
+        CoursePublishVo publishCourseInfo = baseMapper.getPublishCourseInfo(courseId);
+        return publishCourseInfo;
+    }
+
+    @Override
+    public IPage<EduCourse> pageCourseCondition(Page<EduCourse> page, CourseQueryVo courseQueryVo) {
+
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+
+        if (courseQueryVo == null) {
+            courseQueryVo = new CourseQueryVo();
+        }
+
+        String title  = courseQueryVo.getTitle();
+        String status = courseQueryVo.getStatus();
+        String begin  = courseQueryVo.getBegin();
+        String end    = courseQueryVo.getEnd();
+
+        if (!StringUtils.isEmpty(title)) {
+            queryWrapper.like("title", title);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            queryWrapper.eq("status", status);
+        }
+        if (!StringUtils.isEmpty(begin)) {
+            queryWrapper.ge("gmt_create", begin);
+        }
+        if (!StringUtils.isEmpty(end)) {
+            queryWrapper.le("gmt_create", end);
+        }
+
+        queryWrapper.orderByDesc("view_count", "gmt_create");
+
+        IPage<EduCourse> eduCourseIPage = baseMapper.selectPage(page, queryWrapper);
+        return eduCourseIPage;
     }
 }

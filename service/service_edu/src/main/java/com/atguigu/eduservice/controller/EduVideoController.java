@@ -1,10 +1,12 @@
 package com.atguigu.eduservice.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.atguigu.commonutils.R;
+import com.atguigu.eduservice.entity.EduVideo;
+import com.atguigu.eduservice.service.EduVideoService;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -15,9 +17,38 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-02-27
  */
 @RestController
-//@RequestMapping("/eduservice/edu-video")
 @CrossOrigin
 public class EduVideoController {
 
+    @Resource
+    private EduVideoService eduVideoService;
+
+    @PostMapping("/eduservice/video/addVideo")
+    public R addVideo(@RequestBody EduVideo eduVideo) {
+
+        eduVideoService.save(eduVideo);
+        return R.success();
+    }
+
+    @DeleteMapping("/eduservice/video/{id}")
+    public R deleteVideo(@PathVariable("id") String id) {
+
+        eduVideoService.removeById(id);
+        return R.success();
+    }
+
+    @PostMapping("/eduservice/video/updateVideo")
+    public R updateVideo(@RequestBody EduVideo eduVideo) {
+
+        eduVideoService.updateById(eduVideo);
+        return R.success();
+    }
+
+    @GetMapping("/eduservice/video/getVideoInfo/{id}")
+    public R getVideoInfo(@PathVariable("id") String id) {
+
+        EduVideo eduVideo = eduVideoService.getById(id);
+        return R.success().data("eduVideo", eduVideo);
+    }
 }
 
