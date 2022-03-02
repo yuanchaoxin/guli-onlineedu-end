@@ -12,9 +12,9 @@ spring:
 aliyun:
   oss:
     file:
-      endpoint: oss-cn-beijing.aliyuncs.com
-      keyid: LTAI5tMto9bHasyUDU5DjT1R
-      keysecret: z0lnW95MKYRVW9p0L67V0z6wyF6wRK
-      bucketname: guli-edu-yuan
+      endpoint:
+      keyid:
+      keysecret:
+      bucketname:
 #bucket可以在控制台创建，也可以使用java代码创建
 
