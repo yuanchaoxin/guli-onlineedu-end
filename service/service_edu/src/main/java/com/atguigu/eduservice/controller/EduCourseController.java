@@ -106,5 +106,12 @@ public class EduCourseController {
                 .data("total", eduCoursePage.getTotal())
                 .data("rows", eduCoursePage.getRecords());
     }
+
+    @DeleteMapping("/eduservice/course/deleteCourseById/{courseId}")
+    public R deleteCourseById(@PathVariable("courseId") String courseId) {
+
+        eduCourseService.deleteCourseById(courseId);
+        return R.success();
+    }
 }
 

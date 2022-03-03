@@ -5,8 +5,10 @@ import com.atguigu.eduservice.entity.EduCourseDescription;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
+import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
+import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.eduservice.vo.CoursePublishVo;
 import com.atguigu.eduservice.vo.CourseQueryVo;
 import com.atguigu.eduservice.vo.TeacherQuery;
@@ -35,6 +37,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Resource
     private EduCourseDescriptionService eduCourseDescriptionService;
+
+    @Resource
+    private EduVideoService eduVideoService;
+
+    @Resource
+    private EduChapterService eduChapterService;
 
     @Override
     public String addCourse(CourseInfoVo courseInfoVo) {
@@ -127,5 +135,25 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
         IPage<EduCourse> eduCourseIPage = baseMapper.selectPage(page, queryWrapper);
         return eduCourseIPage;
+    }
+
+    @Override
+    public void deleteCourseById(String courseId) {
+
+        // 删除小节
+        eduVideoService.deleteVideoByCourseId(courseId);
+
+        // 删除章节
+        eduChapterService.deleteChapterByCourseId(courseId);
+
+        // 删除描述
+        eduCourseDescriptionService.removeById(courseId);
+
+        // 删除课程
+        int i = baseMapper.deleteById(courseId);
+
+        if (i <= 0) {
+            throw new GuliException(20001, "删除课程失败");
+        }
     }
 }
