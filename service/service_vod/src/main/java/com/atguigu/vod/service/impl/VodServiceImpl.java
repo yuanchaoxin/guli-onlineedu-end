@@ -10,10 +10,13 @@ import com.atguigu.servicebase.config.exception.GuliException;
 import com.atguigu.vod.service.VodService;
 import com.atguigu.vod.utils.ConstantVodUtils;
 import com.atguigu.vod.utils.InitVodCilent;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author 86178
@@ -56,15 +59,36 @@ public class VodServiceImpl implements VodService {
     public void deleteAliyunVideoById(String videoId) {
 
         try {
+            if (org.springframework.util.StringUtils.isEmpty(videoId)) {
+                return;
+            }
             DefaultAcsClient client = InitVodCilent.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);
-
             DeleteVideoRequest deleteVideoRequest = new DeleteVideoRequest();
             deleteVideoRequest.setVideoIds(videoId);
+
             client.getAcsResponse(deleteVideoRequest);
         } catch (ClientException e) {
             e.printStackTrace();
             throw new GuliException(20001, "删除阿里云视频失败");
+        }
+    }
 
+    @Override
+    public void batchDeleteAliyunVideoByIds(List<String> videoIdList) {
+        try {
+            if (videoIdList == null || videoIdList.size() <= 0) {
+                return;
+            }
+            DefaultAcsClient client = InitVodCilent.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);
+
+            DeleteVideoRequest deleteVideoRequest = new DeleteVideoRequest();
+            String videoIds = StringUtils.join(videoIdList.toArray(), ",");
+            deleteVideoRequest.setVideoIds(videoIds);
+
+            client.getAcsResponse(deleteVideoRequest);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            throw new GuliException(20001, "删除阿里云视频失败");
         }
     }
 }

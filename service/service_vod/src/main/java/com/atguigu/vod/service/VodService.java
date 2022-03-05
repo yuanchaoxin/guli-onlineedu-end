@@ -2,6 +2,8 @@ package com.atguigu.vod.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author yuanchaoxin
@@ -13,4 +15,6 @@ public interface VodService {
     String uploadAliyunVideo(MultipartFile file);
 
     void deleteAliyunVideoById(String videoId);
+
+    void batchDeleteAliyunVideoByIds(List<String> videoIdList);
 }

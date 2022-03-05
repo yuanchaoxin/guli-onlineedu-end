@@ -33,7 +33,7 @@ public class EduVideoController {
     @DeleteMapping("/eduservice/video/{id}")
     public R deleteVideo(@PathVariable("id") String id) {
 
-        eduVideoService.removeById(id);
+        eduVideoService.deleteVideoById(id);
         return R.success();
     }
 

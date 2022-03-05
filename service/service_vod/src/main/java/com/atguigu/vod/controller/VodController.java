@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Description
@@ -37,6 +38,13 @@ public class VodController {
     public R deleteAliyunVideoById(@PathVariable("videoId") String videoId) {
 
         vodService.deleteAliyunVideoById(videoId);
+        return R.success();
+    }
+
+    @DeleteMapping("/vodservice/video/batchDeleteAliyunVideo")
+    public R batchDeleteAliyunVideo(@RequestParam("videoIdList") List<String> videoIdList) {
+
+        vodService.batchDeleteAliyunVideoByIds(videoIdList);
         return R.success();
     }
 }
