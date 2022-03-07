@@ -5,7 +5,7 @@ import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.feign.VodFeignService;
 import com.atguigu.eduservice.mapper.EduVideoMapper;
 import com.atguigu.eduservice.service.EduVideoService;
-import com.atguigu.servicebase.config.exception.GuliException;
+import com.atguigu.servicebase.exception.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;

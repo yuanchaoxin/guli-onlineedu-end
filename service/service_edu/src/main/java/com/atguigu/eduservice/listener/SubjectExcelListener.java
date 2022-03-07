@@ -5,7 +5,7 @@ import com.alibaba.excel.event.AnalysisEventListener;
 import com.atguigu.eduservice.entity.EduSubject;
 import com.atguigu.eduservice.entity.execl.SubjectData;
 import com.atguigu.eduservice.service.EduSubjectService;
-import com.atguigu.servicebase.config.exception.GuliException;
+import com.atguigu.servicebase.exception.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import java.util.Map;

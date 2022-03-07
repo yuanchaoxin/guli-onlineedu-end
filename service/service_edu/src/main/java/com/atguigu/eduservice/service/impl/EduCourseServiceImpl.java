@@ -2,7 +2,6 @@ package com.atguigu.eduservice.service.impl;
 
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduCourseDescription;
-import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduChapterService;
@@ -11,8 +10,7 @@ import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.eduservice.vo.CoursePublishVo;
 import com.atguigu.eduservice.vo.CourseQueryVo;
-import com.atguigu.eduservice.vo.TeacherQuery;
-import com.atguigu.servicebase.config.exception.GuliException;
+import com.atguigu.servicebase.exception.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -22,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>

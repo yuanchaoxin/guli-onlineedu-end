@@ -1,10 +1,9 @@
-package com.atguigu.servicebase.config.handle;
+package com.atguigu.servicebase.handle;
 
 import com.atguigu.commonutils.R;
-import com.atguigu.servicebase.config.exception.GuliException;
+import com.atguigu.servicebase.exception.GuliException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**

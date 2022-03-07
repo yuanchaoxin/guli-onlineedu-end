@@ -1,7 +1,5 @@
 package com.atguigu.commonutils;
 
-import lombok.Data;
-
 /**
  *  * @ClassName ResultCode
  *  * @Package com.atguigu.commonutils

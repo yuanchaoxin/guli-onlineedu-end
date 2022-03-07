@@ -1,6 +1,5 @@
 package com.atguigu.commonutils;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

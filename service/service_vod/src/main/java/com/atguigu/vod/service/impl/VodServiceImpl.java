@@ -6,7 +6,7 @@ import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
-import com.atguigu.servicebase.config.exception.GuliException;
+import com.atguigu.servicebase.exception.GuliException;
 import com.atguigu.vod.service.VodService;
 import com.atguigu.vod.utils.ConstantVodUtils;
 import com.atguigu.vod.utils.InitVodCilent;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
 
 /**
