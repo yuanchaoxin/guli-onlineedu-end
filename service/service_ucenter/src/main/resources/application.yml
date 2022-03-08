@@ -1,6 +1,6 @@
 #服务端口
 server:
-  port: 8006
+  port: 8160
 
 spring:
   application:
@@ -39,3 +39,8 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:com/atguigu/ucenterservice/mapper/xml/*.xml
+
+#wx:
+#  open:
+#    app_id:
+#    app_secret:
