@@ -23,6 +23,11 @@ spring:
 feign:
   hystrix:
     enabled: true
+    command:
+      default:
+        execution:
+          isolation:
+            strategy: SEMAPHORE
 
 #配置mapper xml文件的路径
 mybatis-plus:

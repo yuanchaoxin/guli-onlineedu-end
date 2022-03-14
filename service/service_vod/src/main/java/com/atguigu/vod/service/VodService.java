@@ -17,4 +17,6 @@ public interface VodService {
     void deleteAliyunVideoById(String videoId);
 
     void batchDeleteAliyunVideoByIds(List<String> videoIdList);
+
+    String getPlayAuth(String videoId);
 }

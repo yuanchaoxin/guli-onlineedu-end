@@ -47,4 +47,16 @@ public class VodController {
         vodService.batchDeleteAliyunVideoByIds(videoIdList);
         return R.success();
     }
+
+    /**
+     * 根据id获取播放凭证
+     * @param videoId
+     * @return
+     */
+    @GetMapping("/vodservice/video/getPlayAuth/{videoId}")
+    public R getPlayAuth(@PathVariable("videoId") String videoId) {
+
+        String playAuth = vodService.getPlayAuth(videoId);
+        return R.success().data("playAuth", playAuth);
+    }
 }
