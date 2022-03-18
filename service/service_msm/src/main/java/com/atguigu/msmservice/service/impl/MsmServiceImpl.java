@@ -1,12 +1,5 @@
 package com.atguigu.msmservice.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
-import com.aliyuncs.CommonRequest;
-import com.aliyuncs.CommonResponse;
-import com.aliyuncs.DefaultAcsClient;
-import com.aliyuncs.IAcsClient;
-import com.aliyuncs.http.MethodType;
-import com.aliyuncs.profile.DefaultProfile;
 import com.atguigu.msmservice.service.MsmService;
 import com.atguigu.msmservice.utils.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;

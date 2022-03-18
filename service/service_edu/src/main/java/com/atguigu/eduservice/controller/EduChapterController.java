@@ -4,7 +4,6 @@ package com.atguigu.eduservice.controller;
 import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.entity.EduChapter;
 import com.atguigu.eduservice.entity.chapter.ChapterVo;
-import com.atguigu.eduservice.entity.subject.OneSubject;
 import com.atguigu.eduservice.service.EduChapterService;
 import org.springframework.web.bind.annotation.*;
 

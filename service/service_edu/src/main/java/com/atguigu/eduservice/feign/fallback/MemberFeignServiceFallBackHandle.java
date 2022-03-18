@@ -5,8 +5,6 @@ import com.atguigu.eduservice.feign.MemberFeignService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @ClassName MemberFeignServiceFallBackHandle
  * @Package com.atguigu.eduservice.feign.fallback

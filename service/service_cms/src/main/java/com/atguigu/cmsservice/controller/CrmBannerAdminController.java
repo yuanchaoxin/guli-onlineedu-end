@@ -4,7 +4,6 @@ package com.atguigu.cmsservice.controller;
 import com.atguigu.cmsservice.entity.CrmBanner;
 import com.atguigu.cmsservice.service.CrmBannerService;
 import com.atguigu.commonutils.R;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;

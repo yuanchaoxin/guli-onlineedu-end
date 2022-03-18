@@ -5,7 +5,6 @@ import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.entity.subject.OneSubject;
 import com.atguigu.eduservice.service.EduSubjectService;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;

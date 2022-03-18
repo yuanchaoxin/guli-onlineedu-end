@@ -1,20 +1,22 @@
 package com.atguigu.eduservice.controller.front;
 
+import com.atguigu.commonutils.JwtUtils;
 import com.atguigu.commonutils.R;
-import com.atguigu.eduservice.entity.EduCourse;
-import com.atguigu.eduservice.entity.EduTeacher;
+import com.atguigu.commonutils.ordervo.CourseWebVoOrder;
 import com.atguigu.eduservice.entity.chapter.ChapterVo;
-import com.atguigu.eduservice.entity.vo.CourseInfoVo;
+import com.atguigu.eduservice.feign.OrderFeignService;
 import com.atguigu.eduservice.frontvo.CourseFrontVo;
 import com.atguigu.eduservice.frontvo.CourseWebVo;
 import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduCourseService;
-import com.atguigu.eduservice.service.EduTeacherService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +38,16 @@ public class EduCourseFrontController {
     @Resource
     private EduChapterService eduChapterService;
 
+    @Autowired
+    private OrderFeignService orderFeignService;
+
+    /**
+     * 分页查询课程
+     * @param current
+     * @param size
+     * @param courseFrontVo
+     * @return
+     */
     @PostMapping("/eduservice/eduCourseFront/listCourse/{current}/{size}")
     public R getCourseList(@PathVariable("current") long current,
                            @PathVariable("size") long size,
@@ -45,13 +57,44 @@ public class EduCourseFrontController {
         return R.success().data(map);
     }
 
+    /**
+     * 查询课程详情
+     * @param courseId
+     * @return
+     */
     @GetMapping("/eduservice/eduCourseFront/getFrontCourseInfo/{courseId}")
-    public R getFrontCourseInfo(@PathVariable("courseId") String courseId) {
+    public R getFrontCourseInfo(@PathVariable("courseId") String courseId, HttpServletRequest request) {
+
+        // 课程信息
+        CourseWebVo courseWebVo = eduCourseService.getFrontCourseInfo(courseId);
+
+        // 章节信息
+        List<ChapterVo> chapterVoList = eduChapterService.getAllChapterTreeByCourseId(courseId);
+
+        // 会员是否已购买该课程
+        String memberId = JwtUtils.getMemberIdByJwtToken(request);
+        boolean isBuy = false;
+        // 已登录
+        if (!StringUtils.isEmpty(memberId)) {
+            isBuy = orderFeignService.getOrderStatus(courseId, memberId);
+        }
+
+        return R.success()
+                .data("courseWebVo", courseWebVo)
+                .data("chapterVoList", chapterVoList)
+                .data("isBuy", isBuy);
+
+    }
+
+    @PostMapping("/eduservice/eduCourseFront/getCourseWebVoOrder/{courseId}")
+    public CourseWebVoOrder getCourseWebVoOrder(@PathVariable("courseId") String courseId) {
 
         CourseWebVo courseWebVo = eduCourseService.getFrontCourseInfo(courseId);
 
-        List<ChapterVo> chapterVoList = eduChapterService.getAllChapterTreeByCourseId(courseId);
+        CourseWebVoOrder courseWebVoOrder = new CourseWebVoOrder();
+        BeanUtils.copyProperties(courseWebVo, courseWebVoOrder);
 
-        return R.success().data("courseWebVo", courseWebVo).data("chapterVoList", chapterVoList);
+        return  courseWebVoOrder;
+
     }
 }

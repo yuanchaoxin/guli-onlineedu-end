@@ -1,12 +1,12 @@
 package com.atguigu.ucenterservice.controller;
 
 
-import com.atguigu.commonutils.JwtUtils;
 import com.atguigu.commonutils.R;
+import com.atguigu.commonutils.ordervo.UcenterMemberOrder;
 import com.atguigu.ucenterservice.entity.UcenterMember;
 import com.atguigu.ucenterservice.entity.vo.RegisterVo;
 import com.atguigu.ucenterservice.service.UcenterMemberService;
-import org.springframework.http.HttpRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -47,6 +47,16 @@ public class UcenterMemberController {
 
         UcenterMember ucenterMember = ucenterMemberService.getMemberInfo(httpRequest);
         return R.success().data("member", ucenterMember);
+    }
+
+    @PostMapping("/ucenterservice/member/getUcenterMemberOrder/{memberId}")
+    public UcenterMemberOrder getUcenterMemberOrder(@PathVariable("memberId") String memberId) {
+        UcenterMember ucenterMember = ucenterMemberService.getById(memberId);
+
+        UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
+        BeanUtils.copyProperties(ucenterMember, ucenterMemberOrder);
+
+        return ucenterMemberOrder;
     }
 }
 
