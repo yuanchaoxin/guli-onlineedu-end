@@ -2,6 +2,7 @@ package com.atguigu.ucenterservice.mapper;
 
 import com.atguigu.ucenterservice.entity.UcenterMember;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 
+    Integer getRegisterCountByDay(@Param("day") String day);
 }

@@ -23,4 +23,6 @@ public interface UcenterMemberService extends IService<UcenterMember> {
     UcenterMember getMemberInfo(HttpServletRequest httpRequest);
 
     UcenterMember getOpenIdMember(String openid);
+
+    Integer getRegisterCountByDay(String day);
 }
