@@ -6,7 +6,6 @@ import com.atguigu.commonutils.ordervo.UcenterMemberOrder;
 import com.atguigu.ucenterservice.entity.UcenterMember;
 import com.atguigu.ucenterservice.entity.vo.RegisterVo;
 import com.atguigu.ucenterservice.service.UcenterMemberService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
