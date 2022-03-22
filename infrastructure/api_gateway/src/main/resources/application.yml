@@ -21,4 +21,8 @@ spring:
            uri: lb://service-msm
            predicates:
              - Path=/msmservice/**
+         - id: service-acl
+           uri: lb://service-acl
+           predicates:
+             - Path=/*/acl/**
 

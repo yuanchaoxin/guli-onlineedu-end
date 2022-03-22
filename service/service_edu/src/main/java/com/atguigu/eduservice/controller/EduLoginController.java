@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 public class EduLoginController {
 
     @PostMapping("/eduservice/user/login")

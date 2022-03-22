@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Api("讲师管理")
 @RestController
-@CrossOrigin
+//@CrossOrigin
 public class EduTeacherController {
 
     @Resource

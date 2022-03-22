@@ -24,7 +24,7 @@ import javax.annotation.Resource;
  * @since 2022-02-27
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 //@RequestMapping("/eduservice/edu-course")
 public class EduCourseController {
 

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2022-03-14
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 public class EduCommentController {
 
     @Resource

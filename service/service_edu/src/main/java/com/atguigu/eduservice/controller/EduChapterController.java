@@ -19,7 +19,7 @@ import java.util.List;
  * @since 2022-02-27
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin
 public class EduChapterController {
 
     @Resource
